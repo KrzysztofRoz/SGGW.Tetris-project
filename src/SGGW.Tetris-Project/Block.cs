@@ -9,12 +9,12 @@ namespace SGGW.Tetris_Project
     /// <summary>
     /// Klasa odpowiedzialna za implementacje metod wspolnych dla kazdego z bloku  i abstarakcyjne pola poszczegolnych blokow
     /// </summary>
-    abstract class Block
+    public abstract class Block
     {
         protected abstract Positions[][] Tiles { get; }
         protected abstract Positions StartOffset { get; }
         public abstract int Id { get; }
-        protected int RotationState;
+        private int RotationState;
         private Positions Offset;
         public Block()
         {
