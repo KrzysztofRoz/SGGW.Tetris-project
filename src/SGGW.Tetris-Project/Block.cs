@@ -6,23 +6,70 @@ using System.Threading.Tasks;
 
 namespace SGGW.Tetris_Project
 {
-    abstract class Block
+    /// <summary>
+    /// Klasa odpowiedzialna za implementacje metod wspolnych dla kazdego z bloku  i abstarakcyjne pola poszczegolnych blokow
+    /// </summary>
+    public abstract class Block
     {
-        //TODO:
-        //pola:
-        //abstarct Postions[][] Tiles
-        //abstarc Position Start 
-        //abstarct int ID
-        //abstract int rotationState
-        //Position Offset
-        //public Constructor (Start Offset Column i ROW) w konkretnych blokach dodaje Tiles
-
-        //metody all public
-        // IEnumerable<Positions> TilePositions() return lista aktualnych pozycji bloku
-        //void RotateL() obraca w lewo
-        //void RotateR() obraca w prawo
-        //void Move(rzad,kolumna) rusza w prawo lewo i dol
-        //??? void Reset() zmiana do pierwotnej pozycji
-
+        protected abstract Positions[][] Tiles { get; }
+        protected abstract Positions StartOffset { get; }
+        public abstract int Id { get; }
+        private int RotationState;
+        private Positions Offset;
+        public Block()
+        {
+            Offset = new Positions(StartOffset.row,StartOffset.column);
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns>Kolekcja zawierajaca aktualne pozycje bloku</returns>
+        public IEnumerable<Positions> TilePositions()
+        {
+            foreach (Positions positions in Tiles[RotationState]) 
+            { 
+            yield return new Positions(positions.row + Offset.row,positions.column + Offset.column);
+            }
+        }
+        /// <summary>
+        /// obrot bloku w prawo, dzielenie modulo zapewnie cyklicznosc stanu wzgledem mozliwych pozycji
+        /// </summary>
+        public void RotateR()
+        {
+            RotationState =(RotationState+1) %Tiles.Length; 
+        }
+        /// <summary>
+        /// obrot bloku w lewo
+        /// </summary>
+        public void RotateL()
+        {
+            if (RotationState == 0)
+            {
+                RotationState = Tiles.Length-1;
+            }
+            else
+            {
+                RotationState--;
+            }
+        }
+        /// <summary>
+        /// Ruch bloku wzdluz osi x i y
+        /// </summary>
+        /// <param name="rows"></param>
+        /// <param name="columns"></param>
+        public void Move(int rows, int columns)
+        {
+            Offset.row += rows;
+            Offset.column += columns;
+        }
+        /// <summary>
+        /// Ustawienie poczatkowych pozycji bloku
+        /// </summary>
+        public void Reset()
+        {
+            RotationState = 0;
+            Offset.row =StartOffset.row;
+            Offset.column =StartOffset.column;
+        }
     }
 }
