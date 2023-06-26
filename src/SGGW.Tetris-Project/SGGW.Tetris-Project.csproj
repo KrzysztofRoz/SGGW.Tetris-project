@@ -57,9 +57,15 @@
     <Compile Include="GameGrid.cs" />
     <Compile Include="GameState.cs" />
     <Compile Include="IBlock.cs" />
+    <Compile Include="JBlock.cs" />
+    <Compile Include="LBlock.cs" />
+    <Compile Include="OBlock.cs" />
     <Compile Include="Positions.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SBlock.cs" />
+    <Compile Include="TBlock.cs" />
+    <Compile Include="ZBlock.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

@@ -85,7 +85,7 @@ namespace SGGW.Tetris_Project
 
             for (int row =rows-1; row >= 0; row--)
             {
-                ISEmpty(IsRowFull(row))
+                if(IsRowEmpty(row))
                 {
                     ClearRow(row);
                     cleared++;

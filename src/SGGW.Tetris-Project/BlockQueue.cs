@@ -13,10 +13,10 @@ namespace SGGW.Tetris_Project
         {
             new IBlock(),
             new JBlock(),
-            new LBLock(),
+            new LBlock(),
             new OBlock(),
             new SBlock(),
-            new TBLock(),
+            new TBlock(),
             new ZBlock()
 
         };
@@ -27,7 +27,7 @@ namespace SGGW.Tetris_Project
 
         public BlockQueue()
         {
-            NextBlock = new Block();
+            NextBlock = RandomBlock();
         }
 
         private Block RandomBlock()
