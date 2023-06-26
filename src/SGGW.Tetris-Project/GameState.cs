@@ -21,6 +21,7 @@ namespace SGGW.Tetris_Project
         public GameGrid GameGrid{ get; }
         public BlockQueue BlockQueue { get; }
         public bool GameOver { get; private set; }
+        public int Score { get; private set; }
         public GameState()
         {
             GameGrid = new GameGrid(22,10);
@@ -81,7 +82,7 @@ namespace SGGW.Tetris_Project
             {
                 GameGrid[pos.row,pos.column] = CurrentBlock.Id;
             }
-            GameGrid.ClearFullRow();
+            Score+=GameGrid.ClearFullRow();
             if (IsGameOver())
             {
                 GameOver = true;
